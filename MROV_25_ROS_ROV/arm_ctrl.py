@@ -11,7 +11,7 @@ class ArmControllerSubscriber(Node):
         super().__init__('arm_controller_subscriber')
 
         self.mode = True
-        self.speed = 1.0
+        self.rate = 1.0
 
         self.sub = self.create_subscription(
             String,
@@ -32,26 +32,34 @@ class ArmControllerSubscriber(Node):
     def cb(self, msg: String):
         data = json.loads(msg.data)
                 
-        # data['right_y'] *= -1
-        # data['left_y'] *= -1
+        data['right_y'] *= -1
+        data['left_y'] *= -1
 
-        k = 0.25
+        if data['dpad_up']:
+            self.rate = 1.0
+        elif data['dpad_right']:
+            self.rate = 0.75
+        elif data['dpad_left']:
+            self.rate = 0.5
+        elif data['dpad_down']:
+            self.rate = 0.25
+
         deadzone = 0.2
         
         prox = data["left_y"]
-        prox = k * np.sign(data["left_y"]) if abs(data["left_y"]) > deadzone else 0
+        prox = self.rate * np.sign(data["left_y"]) if abs(data["left_y"]) > deadzone else 0
         # prox = 0
 
-        dist = k * np.sign(data["right_y"]) if abs(data["right_y"]) > deadzone else 0
-        # wrist = k
+        dist = self.rate * np.sign(data["right_y"]) if abs(data["right_y"]) > deadzone else 0
+        # wrist = self.rate
         
-        clasp = k * (2 * data["LB"] - 1) # should act like a toggle, but 1 or -1
+        clasp = self.rate * (2 * data["LB"] - 1) # should act like a toggle, but 1 or -1
 
         out_msg = Float32MultiArray()
         joints = np.array([prox, dist, clasp, 0]) #TODO: include stepper values for base, wristL, wristR
         out_msg.data = joints.astype(float).tolist()
         self.arm_pub.publish(out_msg)
-        per_pow = k * 100
+        per_pow = self.rate * 100
 
         # self.get_logger().info(
         #     "Arm -> " +

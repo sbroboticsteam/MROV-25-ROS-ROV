@@ -17,7 +17,8 @@ import subprocess
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst
 
-DEST_IP = "192.168.1.196"
+# DEST_IP = "192.168.1.196"
+DEST_IP = "192.168.50.151"
 DEST_PORT = 5600
 WIDTH = 1280
 HEIGHT = 720
