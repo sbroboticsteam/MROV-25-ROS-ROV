@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'rov_input_subscriber = MROV_25_ROS_ROV.ctrl:main'
         ],
     },
 )
