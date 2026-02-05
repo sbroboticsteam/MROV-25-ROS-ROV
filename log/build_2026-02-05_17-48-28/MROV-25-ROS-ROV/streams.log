@@ -1,0 +1,24 @@
+[0.606s] Invoking command in '/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV': PYTHONPATH=/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/build --no-deps symlink_data
+[0.791s] running develop
+[0.863s] running egg_info
+[0.863s] creating MROV_25_ROS_ROV.egg-info
+[0.864s] writing MROV_25_ROS_ROV.egg-info/PKG-INFO
+[0.864s] writing dependency_links to MROV_25_ROS_ROV.egg-info/dependency_links.txt
+[0.864s] writing entry points to MROV_25_ROS_ROV.egg-info/entry_points.txt
+[0.864s] writing requirements to MROV_25_ROS_ROV.egg-info/requires.txt
+[0.864s] writing top-level names to MROV_25_ROS_ROV.egg-info/top_level.txt
+[0.864s] writing manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+[0.865s] reading manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+[0.865s] writing manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+[0.866s] running build_ext
+[0.866s] Creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/python3.10/site-packages/MROV-25-ROS-ROV.egg-link (link to .)
+[0.867s] Installing rov_input_subscriber script to /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/MROV-25-ROS-ROV
+[0.867s] 
+[0.867s] Installed /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV
+[0.868s] running symlink_data
+[0.868s] creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index
+[0.868s] creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index
+[0.868s] creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index/packages
+[0.868s] symbolically linking /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/resource/MROV-25-ROS-ROV -> /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index/packages
+[0.868s] symbolically linking /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/package.xml -> /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/MROV-25-ROS-ROV
+[0.885s] Invoked command in '/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV' returned '0': PYTHONPATH=/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/build --no-deps symlink_data

@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+MROV_25_ROS_ROV/__init__.py
+MROV_25_ROS_ROV/ctrl.py
+MROV_25_ROS_ROV.egg-info/PKG-INFO
+MROV_25_ROS_ROV.egg-info/SOURCES.txt
+MROV_25_ROS_ROV.egg-info/dependency_links.txt
+MROV_25_ROS_ROV.egg-info/entry_points.txt
+MROV_25_ROS_ROV.egg-info/requires.txt
+MROV_25_ROS_ROV.egg-info/top_level.txt
+MROV_25_ROS_ROV.egg-info/zip-safe
+resource/MROV-25-ROS-ROV

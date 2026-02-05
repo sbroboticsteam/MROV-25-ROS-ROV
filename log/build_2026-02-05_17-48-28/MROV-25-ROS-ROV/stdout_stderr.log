@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating MROV_25_ROS_ROV.egg-info
+writing MROV_25_ROS_ROV.egg-info/PKG-INFO
+writing dependency_links to MROV_25_ROS_ROV.egg-info/dependency_links.txt
+writing entry points to MROV_25_ROS_ROV.egg-info/entry_points.txt
+writing requirements to MROV_25_ROS_ROV.egg-info/requires.txt
+writing top-level names to MROV_25_ROS_ROV.egg-info/top_level.txt
+writing manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+reading manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+writing manifest file 'MROV_25_ROS_ROV.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/python3.10/site-packages/MROV-25-ROS-ROV.egg-link (link to .)
+Installing rov_input_subscriber script to /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/lib/MROV-25-ROS-ROV
+
+Installed /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV
+running symlink_data
+creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index
+creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index
+creating /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index/packages
+symbolically linking /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/resource/MROV-25-ROS-ROV -> /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/ament_index/resource_index/packages
+symbolically linking /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/build/MROV-25-ROS-ROV/package.xml -> /home/germangiraffe/Documents/tester/ros2_ws/src/MROV-25-ROS-ROV/install/MROV-25-ROS-ROV/share/MROV-25-ROS-ROV
