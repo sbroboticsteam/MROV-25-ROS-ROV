@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'rov_input_subscriber = MROV_25_ROS_ROV.ctrl:main',
-            'thruster_serial_node = your_package_name.serial_thruster_node:main'
+            'thruster_serial_node = MROV_25_ROS_ROV.serial_thruster_node:main',
+            'splitter = MROV_25_ROS_ROV.splitter:main',
         ],
     },
 )

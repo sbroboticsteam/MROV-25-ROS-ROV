@@ -49,7 +49,6 @@ class ThrusterSerialNode(Node):
 
         # Format as CSV line
         serial_string = ",".join(str(v) for v in pwm_values) + "\n"
-
         try:
             self.ser.write(serial_string.encode())
         except Exception as e:
