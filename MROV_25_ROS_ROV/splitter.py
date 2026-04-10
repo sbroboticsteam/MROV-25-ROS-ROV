@@ -14,8 +14,8 @@ class ThrusterSplitter(Node):
         self.channels = [
             '/rov/bltz',
             '/rov/brtz',
-            '/rov/fltz',
             '/rov/frtz',
+            '/rov/fltz',
             '/rov/blt',
             '/rov/brt',
             '/rov/flt',
@@ -60,7 +60,9 @@ class ThrusterSplitter(Node):
 
             # Clamp just in case
             scaled = max(0, min(255, scaled))
-            if self.channels[i] in ['/rov/frt', '/rov/brt']:
+            if self.channels[i] not in ['/rov/frt', '/rov/flt']:
+                scaled = 255 - scaled
+            if self.channels[i] in ['/rov/flt', '/rov/frt', '/rov/blt', '/rov/brt']:
                 scaled = 255 - scaled
             out.data = scaled
             self.pubs[i].publish(out)
