@@ -7,13 +7,13 @@ def generate_launch_description():
 
         
         Node(
-            package='MROV-25-ROS-ROV',
+            package='MROV_25_ROS_ROV',
             executable='thruster_mapper_serial',
             name='thruster_mapper_serial',
             output='screen'
         ),
         Node(
-            package='MROV-25-ROS-ROV',
+            package='MROV_25_ROS_ROV',
             executable='rov_input_subscriber',
             name='rov_input_subscriber',
             output='screen'

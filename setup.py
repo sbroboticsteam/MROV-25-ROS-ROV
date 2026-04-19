@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'MROV-25-ROS-ROV'
+package_name = 'MROV_25_ROS_ROV'
 
 setup(
     name=package_name,
