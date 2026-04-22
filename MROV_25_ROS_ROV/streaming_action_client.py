@@ -3,7 +3,7 @@ from rclpy.action import ActionClient
 from rclpy.action.client import ClientGoalHandle
 from rclpy.node import Node
 
-from interface.actions import Streaming
+from interface.action import Streaming
 
 
 class StreamingActionClient(Node):

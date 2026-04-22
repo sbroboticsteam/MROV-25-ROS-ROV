@@ -3,7 +3,7 @@ from rclpy.action import ActionClient
 from rclpy.node import Node
 
 # from action_tutorials_interfaces.action import Fibonacci
-from interface.actions import Mapping
+from interface.action import Mapping
 
 
 class MappingActionClient(Node):

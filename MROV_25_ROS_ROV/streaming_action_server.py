@@ -3,7 +3,7 @@ from rclpy.action import ActionServer, CancelResponse, GoalResponse
 from rclpy.action.server import ServerGoalHandle
 from rclpy.node import Node
 
-from interface.actions import Streaming
+from interface.action import Streaming
 
 import sys
 import time
