@@ -40,7 +40,7 @@ class ControllerSubscriber(Node):
 
         self.sub = self.create_subscription(
             String,
-            '/controller/full_state',
+            '/controller1/full_state',
             self.cb,
             10
         )
@@ -57,13 +57,13 @@ class ControllerSubscriber(Node):
 
     def cb(self, msg: String):
         data = json.loads(msg.data)
-
+        
         data['right_x'] *= -1
         data['left_x'] *= -1
 
-        if data['LB']:
+        if data['A']:
             self.mode = False
-        if data['RB']:
+        if data['B']:
             self.mode = True
 
         if data['dpad_up']:
