@@ -8,14 +8,21 @@ def generate_launch_description():
         
         Node(
             package='MROV-25-ROS-ROV',
-            executable='thruster_mapper_serial',
-            name='thruster_mapper_serial',
-            output='screen'
+            executable='mcu_serial_node',
+            name='mcu_serial_node',
+            output='screen',
+            parameters=[{'port': '/dev/ttyUSB0'}]
         ),
         Node(
             package='MROV-25-ROS-ROV',
             executable='rov_input_subscriber',
             name='rov_input_subscriber',
+            output='screen'
+        ),
+        Node(
+            package='MROV-25-ROS-ROV',
+            executable='arm_input_subscriber',
+            name='arm_input_subscriber',
             output='screen'
         ),
        
