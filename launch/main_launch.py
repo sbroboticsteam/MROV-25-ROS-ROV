@@ -5,7 +5,6 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
 
-        
         Node(
             package='MROV_25_ROS_ROV',
             executable='thruster_mapper_serial',
@@ -18,5 +17,10 @@ def generate_launch_description():
             name='rov_input_subscriber',
             output='screen'
         ),
-       
+        Node(
+            package='MROV_25_ROS_ROV',
+            executable='arm_input_subscriber',
+            name='arm_input_subscriber',
+            output='screen'
+        )
     ])

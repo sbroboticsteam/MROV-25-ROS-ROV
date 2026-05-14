@@ -26,7 +26,9 @@ setup(
             'splitter = MROV_25_ROS_ROV.splitter:main',
             'thruster_mapper_serial = MROV_25_ROS_ROV.thruster_mapper_serial:main',
             'streaming_server = MROV_25_ROS_ROV.streaming_action_server:main',
-            'streaming_client = MROV_25_ROS_ROV.streaming_action_client:main'
+            'streaming_client = MROV_25_ROS_ROV.streaming_action_client:main',
+            'arm_input_subscriber = MROV_25_ROS_ROV.arm_ctrl:main',
+            'arm_mapper_serial = MROV_25_ROS_ROV.arm_mapper_serial:main'
         ],
     },
 )
