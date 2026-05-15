@@ -20,7 +20,7 @@ class ArmControllerSubscriber(Node):
             10
         )
 
-        self.thruster_pub = self.create_publisher(
+        self.arm_pub = self.create_publisher(
             Float32MultiArray,
             '/arm_commands',
             10
@@ -32,34 +32,32 @@ class ArmControllerSubscriber(Node):
     def cb(self, msg: String):
         data = json.loads(msg.data)
                 
-        data['right_y'] *= -1
-        data['left_y'] *= -1
+        # data['right_y'] *= -1
+        # data['left_y'] *= -1
 
         k = 0.25
         deadzone = 0.2
         
-        prox = k * (0) # ignoring for now
-        prox = (1 if data["left_y"] > deadzone else data["left_y"]) 
-        prox *= k
-        
-        dist = (1 if data["right_y"] > deadzone else data["right_y"]) 
-        dist = -1 if dist < -deadzone else 0 
-        dist *= k
+        prox = data["left_y"]
+        prox = k * np.sign(data["left_y"]) if abs(data["left_y"]) > deadzone else 0
+        # prox = 0
+
+        dist = k * np.sign(data["right_y"]) if abs(data["right_y"]) > deadzone else 0
         # wrist = k
         
-        clasp = k * data["LB"] # should act like a toggle 
+        clasp = k * (2 * data["LB"] - 1) # should act like a toggle, but 1 or -1
 
         out_msg = Float32MultiArray()
-        joints = np.array([prox, dist, clasp]) #TODO: include stepper values for base, wristL, wristR
+        joints = np.array([prox, dist, clasp, 0]) #TODO: include stepper values for base, wristL, wristR
         out_msg.data = joints.astype(float).tolist()
-        self.thruster_pub.publish(out_msg)
+        self.arm_pub.publish(out_msg)
         per_pow = k * 100
 
-        self.get_logger().info(
-            "Arm -> " +
-            " | ".join(f"T{i}:{float(v):+.3f}" for i, v in enumerate(joints)) +
-            f" | Flow Rate={per_pow:.0f}% "
-        )
+        # self.get_logger().info(
+        #     "Arm -> " +
+        #     " | ".join(f"T{i}:{float(v):+.3f}" for i, v in enumerate(joints)) +
+        #     f" | Flow Rate={per_pow:.0f}% "
+        # )
 
 def main(args=None):
     rclpy.init(args=args)

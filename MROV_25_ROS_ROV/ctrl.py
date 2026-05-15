@@ -15,15 +15,16 @@ def thruster_mix(FWB, LR, UD, ROLL, PITCH, YAW):
     D_BR = FWB + LR + YAW
     D_BL = FWB - LR - YAW
 
-    thrusters = np.array([
-        V_FL, V_FR, V_BR, V_BL,
-        D_FL, D_FR, D_BR, D_BL
-    ])
-
+    # thrusters = np.array([
+    #     V_FL, V_FR, V_BR, V_BL,
+    #     D_FL, D_FR, D_BR, D_BL
+    # ])
+    # reverse the back directional
+    thrusters = np.array([D_FR, V_FR, -D_BR, V_BR, -D_BL, V_BL, D_FL, V_FL])
     max_mag = np.max(np.abs(thrusters))
-    if max_mag > 1.0:
+    if max_mag > 1:
         thrusters /= max_mag
-
+        
     return thrusters
 
 
@@ -40,7 +41,7 @@ class ControllerSubscriber(Node):
 
         self.sub = self.create_subscription(
             String,
-            '/controller/full_state',
+            '/controller1/full_state',
             self.cb,
             10
         )
