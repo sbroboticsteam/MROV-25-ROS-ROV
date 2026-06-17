@@ -21,6 +21,7 @@ class SimMap(Node):
         # first 5 values are servo values
         # last 3 values are stepper values
         #[prox, dist, clasp, zed, extra]
+        #[shoulder, wristL, wristR]
         self.arm_topics = [
             '/rov/arm1',
             '/rov/arm2',
@@ -51,6 +52,8 @@ class SimMap(Node):
             if name:
                 pub = self.create_publisher(Float64, name, 10)
                 self.arm_pubs.append(pub)
+            else:
+                self.arm_pubs.append(None)
         
         self.arm_sub = self.create_subscription(
             Float32MultiArray,
@@ -93,12 +96,12 @@ class SimMap(Node):
             self.thruster_pubs[i].publish(out)
 
         # Debug
-        self.get_logger().info(
-            "Thursters: " + " | ".join(
-                f"{self.thruster_topics[i]}={outs[i]}"
-                for i in range(len(data))
-            )
-        )
+        # self.get_logger().info(
+        #     "Thursters: " + " | ".join(
+        #         f"{self.thruster_topics[i]}={outs[i]}"
+        #         for i in range(len(data))
+        #     )
+        # )
         
     def arm_callback(self, msg: Float32MultiArray):
         data = msg.data
@@ -110,6 +113,9 @@ class SimMap(Node):
             if not self.arm_topics[i]:
                 continue
                 # scaled = 127
+                
+            if self.arm_topics[i] in ['/rov/arm0','/rov/arm2']:
+                value *= -1
             out.data = value
             outs.append(value)
             self.arm_pubs[i].publish(out)
@@ -120,6 +126,8 @@ class SimMap(Node):
         #         for i in range(len(data))
         #     )
         # )
+        
+
 
 def main(args=None):
     rclpy.init(args=args)
