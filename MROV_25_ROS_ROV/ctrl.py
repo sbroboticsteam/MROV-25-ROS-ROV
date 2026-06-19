@@ -105,11 +105,11 @@ class ControllerSubscriber(Node):
         disp_mode = "Pitch/Roll" if self.mode else "Yaw"
         per_pow = self.speed * 100
 
-        self.get_logger().info(
-            "Thrusters -> " +
-            " | ".join(f"T{i}:{float(v):+.3f}" for i, v in enumerate(thrusters)) +
-            f" | Speed={per_pow:.0f}% | Mode={disp_mode}"
-        )
+        # self.get_logger().info(
+        #     "Thrusters -> " +
+        #     " | ".join(f"T{i}:{float(v):+.3f}" for i, v in enumerate(thrusters)) +
+        #     f" | Speed={per_pow:.0f}% | Mode={disp_mode}"
+        # )
 
 def main(args=None):
     rclpy.init(args=args)
