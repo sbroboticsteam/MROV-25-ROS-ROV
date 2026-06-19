@@ -22,7 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'rov_input_subscriber = MROV_25_ROS_ROV.ctrl:main',
-            'thruster_serial_node = MROV_25_ROS_ROV.serial_thruster_node:main',
+            'serial_map = MROV_25_ROS_ROV.serial_map:main',
             'splitter = MROV_25_ROS_ROV.splitter:main',
             'thruster_mapper_serial = MROV_25_ROS_ROV.thruster_mapper_serial:main',
             'streaming_server = MROV_25_ROS_ROV.streaming_action_server:main',
