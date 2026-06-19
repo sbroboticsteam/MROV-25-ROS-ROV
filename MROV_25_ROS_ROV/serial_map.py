@@ -6,10 +6,9 @@ import time
 import struct
 
 
-class ThrusterMapperSerial(Node):
-
+class SerialMap(Node):
     def __init__(self):
-        super().__init__('thruster_mapper_serial')
+        super().__init__('serial_map')
 
         # ==========================
         # CONSTANTS
@@ -20,7 +19,8 @@ class ThrusterMapperSerial(Node):
 
         # State for latest commands
         self.esc_values = [1500] * 8
-        self.servo_values = [1500] * 4
+        self.servo_values = [1500] * 5
+        self.stepper_values = [0.0] * 3
 
         # ==========================
         # SERIAL SETUP
@@ -56,23 +56,23 @@ class ThrusterMapperSerial(Node):
         self.get_logger().info("Unified STM Mapper Serial Node Ready")
 
     # ==========================
-    # Mapping Function
+    # Mapping Functions
     # ==========================
-    def map_value(self, x, is_arm=False):
-        if is_arm:
-            # map arm values from float to 1000-2000
+        
+    def map_esc(self,x):
+        return int(self.MID + x * (self.HIGH - self.MID))
+    
+    def map_servo(self,x):
             mid = 1500
             high = 2000
             return int(mid + x * (high - mid))
-        else:
-            return int(self.MID + x * (self.HIGH - self.MID))
 
     # ==========================
     # Callbacks
     # ==========================
     def thruster_callback(self, msg: Float32MultiArray):
         data = msg.data
-        esc_mapped = [self.map_value(x) for x in data]
+        esc_mapped = [self.map_esc(x) for x in data]
         while len(esc_mapped) < 8:
             esc_mapped.append(1500)
         self.esc_values = esc_mapped[:8]
@@ -80,20 +80,19 @@ class ThrusterMapperSerial(Node):
 
     def arm_callback(self, msg: Float32MultiArray):
         data = msg.data
-        arm_mapped = [self.map_value(x, is_arm=True) for x in data]
+        arm_mapped = [self.map_servo(x, is_arm=True) for x in data[:5]]
         while len(arm_mapped) < 4:
             arm_mapped.append(1500)
-        self.servo_values = arm_mapped[:4]
+        self.servo_values = arm_mapped[:5] 
+        self.stepper_values = arm_mapped[5:]
         self.send_serial()
 
     def send_serial(self):
         if self.ser is None:
             return
 
-        all_values = self.esc_values + self.servo_values
-        packet = b''
-        for value in all_values:
-            packet += struct.pack('<i', value)
+        all_values = self.esc_values + self.servo_values + self.stepper_values
+        packet = struct.pack('<8H5H3f', *all_values)
 
         try:
             self.ser.write(packet)
@@ -108,7 +107,7 @@ class ThrusterMapperSerial(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ThrusterMapperSerial()
+    node = SerialMap()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
