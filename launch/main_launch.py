@@ -28,5 +28,11 @@ def generate_launch_description():
             executable='streaming_server',
             name='streaming_server',
             output='screen'
+        ),
+        Node(
+            package='MROV_25_ROS_ROV',
+            executable='serial_reader',
+            name='serial_reader',
+            output='screen'
         )
     ])
