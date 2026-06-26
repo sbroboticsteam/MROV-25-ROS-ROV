@@ -23,9 +23,12 @@ class SerialReader(Node):
             self.ser = None
             
         # publishers
-        self.e1 = self.create_publisher(Float32MultiArray, '/encoders/e1', 10)
-        self.e2 = self.create_publisher(Float32MultiArray, '/encoders/e2', 10)
-        self.e3 = self.create_publisher(Float32MultiArray, '/encoders/e3', 10)
+        # self.e1 = self.create_publisher(Float32MultiArray, '/encoders/base', 10)
+        # self.e2 = self.create_publisher(Float32MultiArray, '/encoders/prox', 10)
+        # self.e3 = self.create_publisher(Float32MultiArray, '/encoders/dist', 10)
+        # self.e4 = self.create_publisher(Float32MultiArray, '/encoders/wrist_pitch', 10)
+        # self.e5 = self.create_publisher(Float32MultiArray, '/encoders/elbow_pitch', 10)
+        self.pub = self.create_publisher(Float32MultiArray, "/physical_encoders")
 
         self.reader.start()
         self.get_logger().info("STM Serial Reader Ready")
@@ -47,22 +50,27 @@ class SerialReader(Node):
                 self.log_msg()
                 
     def pub_sensors(self):
-        self.ser.read(2) # drain the size segment of the header
-        sensor_payload = self.ser.read(24)
-        if len(sensor_payload) == 24:
-            values = struct.unpack("<6f", sensor_payload)
+        msg_len = self.ser.read(2) # drain the size segment of the header
+        sensor_payload = self.ser.read(msg_len)
         
-            e1_reading = Float32MultiArray()
-            e2_reading = Float32MultiArray()
-            e3_reading = Float32MultiArray()
+        if len(sensor_payload) == msg_len:
+            values = struct.unpack(f"<8f", sensor_payload)
+        
+            # e1_reading = Float32MultiArray()
+            # e2_reading = Float32MultiArray()
+            # e3_reading = Float32MultiArray()
             
-            e1_reading.data = values[0:2]
-            e2_reading.data = values[2:4]
-            e3_reading.data = values[4:6]
+            # e1_reading.data = values[0:2]
+            # e2_reading.data = values[2:4]
+            # e3_reading.data = values[4:6]
             
-            self.e1.publish(e1_reading) 
-            self.e2.publish(e2_reading)
-            self.e3.publish(e3_reading)
+            # self.e1.publish(e1_reading) 
+            # self.e2.publish(e2_reading)
+            # self.e3.publish(e3_reading)
+            
+            encoder_readings = Float32MultiArray()
+            encoder_readings.data = values
+            self.pub.publish(encoder_readings)
         else:
             print(len(sensor_payload))
 
